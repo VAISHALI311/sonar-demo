@@ -3,8 +3,7 @@ name: SonarCloud Analysis
 on:
   push:
     branches:
-      - master
-  pull_request:
+      - master   # change to master if your repo uses master
 
 jobs:
   sonar:
