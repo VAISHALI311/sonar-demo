@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
@@ -23,4 +22,3 @@ jobs:
             -Dsonar.projectKey=vaishali311_sonar-demo
             -Dsonar.organization=vaishali311
             -Dsonar.sources=.
-            -Dsonar.host.url=https://sonarcloud.io
