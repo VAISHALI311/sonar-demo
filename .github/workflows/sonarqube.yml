@@ -14,24 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-
-      - name: Build and Scan
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=vaishali311_sonar-demo \
-            -Dsonar.organization=vaishali311 \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${SONAR_TOKEN}
+        with:
+          args: >
+            -Dsonar.projectKey=vaishali311_sonar-demo
+            -Dsonar.organization=vaishali311
+            -Dsonar.sources=.
+            -Dsonar.host.url=https://sonarcloud.io
